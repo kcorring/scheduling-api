@@ -65,8 +65,6 @@ be considered as valid availability.
 By default, the only availabilities returned will be those that fall within the users'
 working hours.
 
-Note that weekends are not excluded.
-
 #### Response Format
 The response will include ta list of availabilities common to all requested users.
 
@@ -75,14 +73,14 @@ UTC, e.g.:
 
 ```json
 {
-    data: [
+    "data": [
         {
-            start_date: "2019-01-01T10:00:00+0000",
-            end_date: "2019-01-01T12:00:00+0000"
+            "start_date": "2019-01-01T10:00:00+0000",
+            "end_date": "2019-01-01T12:00:00+0000"
         },
         {
-            start_date: "2019-01-01T14:45:00+0000",
-            end_date: "2019-01-01T16:00:00+0000",
+            "start_date": "2019-01-01T14:45:00+0000",
+            "end_date": "2019-01-01T16:00:00+0000",
         }
     ]
 }
