@@ -5,6 +5,7 @@ UTC = 'UTC'
 
 class Availability():
     """Representation of a user's availability."""
+
     def __init__(self, start_date, end_date):
         """Initialize an availability.
 
@@ -127,7 +128,6 @@ def _get_user_availability(user_events, start_date, end_date,
     Returns:
         (list(Availability)): A list of valid availabilities for the user.
     """
-
     availabilities = []
 
     start_date = get_date_func(start_date)
@@ -139,23 +139,25 @@ def _get_user_availability(user_events, start_date, end_date,
         event_start = get_date_func(event.start_date)
         event_end = get_date_func(event.end_date)
 
+        # Account for overlapping events
         if event_start <= availability_start:
             availability_start = max(availability_start, event_end)
             continue
 
         add_availability_func(
-            availabilities,
-            availability_start,
-            event_start,
+            availabilities=availabilities,
+            start_date=availability_start,
+            end_date=event_start,
         )
 
         availability_start = event_end
 
+    # Account for any availability between the final event & the end date
     if availability_start < end_date:
         add_availability_func(
-            availabilities,
-            availability_start,
-            end_date,
+            availabilities=availabilities,
+            start_date=availability_start,
+            end_date=end_date,
         )
 
     return availabilities
@@ -200,6 +202,10 @@ def generate_add_work_hour_availability_function(working_hours):
 def add_work_hour_availability(availabilities, start_date,
                                end_date, working_hours):
     """Append work-hour-conscious availabilties to a list.
+
+    If an availability window spans multiple working days, the window will
+    be split into multiple availabilities that intersect with the provided
+    working hours.
 
     Args:
         start_date(arrow.Arrow): The start date of the availability range.
