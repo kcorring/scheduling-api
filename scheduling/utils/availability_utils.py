@@ -54,7 +54,7 @@ def get_user_availability(user_events, start_date, end_date):
             should be calculated. Assumed to be in ISO 8601 format, UTC.
 
     Returns:
-        (list(Availability): A list of availabilities for user.
+        (list(Availability)): A list of availabilities for user.
     """
     return _get_user_availability(
         user_events,
@@ -86,7 +86,7 @@ def get_user_work_hour_availability(user_events, start_date, end_date,
         time_zone(str): The time zone within which the user works.
 
     Returns:
-        (list(Availability): A list of availabilities for the user, within
+        (list(Availability)): A list of availabilities for the user, within
             the user's working hours.
     """
     def get_date_func(date):
@@ -125,7 +125,7 @@ def _get_user_availability(user_events, start_date, end_date,
             add_availability_func.
 
     Returns:
-        (list(Availability): A list of valid availabilities for the user.
+        (list(Availability)): A list of valid availabilities for the user.
     """
 
     availabilities = []
