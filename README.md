@@ -1,5 +1,5 @@
 # scheduling-api
-API for determining a user schedule availability.
+API for determining user schedule availability.
 
 ## Development
 ### Prerequisites
@@ -80,7 +80,7 @@ UTC, e.g.:
         },
         {
             "start_date": "2019-01-01T14:45:00+0000",
-            "end_date": "2019-01-01T16:00:00+0000",
+            "end_date": "2019-01-01T16:00:00+0000"
         }
     ]
 }
